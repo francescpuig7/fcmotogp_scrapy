@@ -2,6 +2,7 @@
 
 ### How to user:
 `pip install -r requirements.txt`
+
 edit `urls` in `./spiders/..py`
 
 execute: 
