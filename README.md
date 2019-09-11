@@ -4,6 +4,8 @@
 `pip install -r requirements.txt`
 edit `urls` in `./spiders/..py`
 
-execute: ```Shell
+execute: 
+
+```shellscript
 scrapy runspider /spiders/fc_spider.py
 ```
