@@ -1,6 +1,7 @@
 import scrapy
 from proposal import *
 from dictnames import DICTNAMES
+from magic_regex import magic_regex
 
 class FCSpider(scrapy.Spider):
     name = "fc_spider"
@@ -35,6 +36,7 @@ class FCSpider(scrapy.Spider):
             print(m.lower())
             if m.lower() in DICTNAMES:
                 print(m)
+        magic_regex(message, username)
 
     def load_winner(self):
         pass
