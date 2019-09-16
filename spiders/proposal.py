@@ -5,8 +5,12 @@ POSITION_POINTS = {'1': 25, '2': 20, '3': 16, 'vr': 5, 'pole': 10, 'pi': 5, 'm2'
 class Proposal(object):
 
     def __init__(self, pilot_name, position):
+        if pilot_name and isinstance(pilot_name, (list, tuple)):
+            pilot_name = pilot_name[0]
+        if position and isinstance(position, (list, tuple)):
+            position = position[0]
         self.pilot_name = pilot_name
-        self.position = position
+        self.position = str(position).lower()
 
     def __eq__(self, other):
         return self.pilot_name == other.pilot_name

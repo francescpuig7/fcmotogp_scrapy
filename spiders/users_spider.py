@@ -80,6 +80,6 @@ class UsersSpider(scrapy.Spider):
         with open('authors.txt', 'a+') as writer:
             # Write the dog breeds to the file in reversed order
             for x in users:
-                writer.write('[MENTION]{}[\MENTION] '.format(x))
+                writer.write('[MENTION]{}[/MENTION] '.format(x))
         for x in users:
-            print('[MENTION]{}[\MENTION]'.format(x))
+            print('[MENTION]{}[/MENTION]'.format(x))
