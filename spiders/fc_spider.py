@@ -2,10 +2,12 @@ import scrapy
 from proposal import *
 from dictnames import DICTNAMES
 from magic_regex import magic_regex
+import pandas as pd
 
 winners = {
-    '1': Proposal('Marquez', '1'), '2': Proposal('Rins', '2'),
-    '3': Proposal('Viñales', '3'), 'vr': Proposal('Rins', 'vr'), 'pole': Proposal('Marquez', 'pole')
+    '1': Proposal('Marquez', '1'), '2': Proposal('Quartanaro', '2'),
+    '3': Proposal('Viñales', '3'), 'vr': Proposal('Marquez', 'vr'),
+    'pole': Proposal('Viñales', 'pole'), 'pi': Proposal('Quartanaro', 'pi')
 }
 
 class FCSpider(scrapy.Spider):
@@ -16,7 +18,8 @@ class FCSpider(scrapy.Spider):
             'https://www.forocoches.com/foro/showthread.php?p=345081693#post345081693'
         ]
         print(urls)
-        self.results = {}
+        self.load_winner()
+
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
 
@@ -38,8 +41,6 @@ class FCSpider(scrapy.Spider):
             print(post_id)
         message = [x for x in message if x != '\r\n\t\r\n\t\t\r\n\t\t\r\n\r\n\r\n']
         print('{}: {}'.format(username, message))
-        """for m in message:
-            print(m.lower())"""
         results = magic_regex(message, username)
         for result in results:
             p = ProposalUser(**result)
@@ -58,5 +59,15 @@ class FCSpider(scrapy.Spider):
                     continue
 
     def load_winner(self):
-        pass
+        self.results = {}
+        self.winners = {}
+        df = pd.read_csv('winners', sep=';', names=['pilot_name', 'position'])
+        for elem in df.T.to_dict().values():
+            self.winners[elem['position']] = elem['pilot_name']
+        return True
+
+    def write_results(self):
+        with open('results.txt', 'w') as f_:
+            for k, v in self.results.items():
+                f_.writelines('{}: {}\n'.format(k, v))
 
