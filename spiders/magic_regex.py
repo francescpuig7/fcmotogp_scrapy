@@ -8,12 +8,14 @@ def magic_regex(alist, username):
             captured = re.findall(regex, message)
             if captured:
                 captured = REGEX_PILOTS[regex].lower()
-                position = ''
+                position = '?'
                 for r in REGEX_POSITIONS.keys():
                     position = re.findall(r, message)
                     if position:
                         position = REGEX_POSITIONS[r].lower()
                         break
+                    else:
+                        position = '?'
                 print('REG: USERNAME: {} voted: {} FOR: {}'.format(username, captured, position))
                 result.append({'username': username, 'position': position, 'pilot_name': captured})
     return result

@@ -35,6 +35,7 @@ class FCSpider(scrapy.Spider):
                 self.parse_message(username[0], message, post_id[0])
                 print('\n')
         print(self.results)
+        self.write_results()
 
     def parse_message(self, username, message, post_id=None):
         if post_id:
@@ -46,16 +47,16 @@ class FCSpider(scrapy.Spider):
             p = ProposalUser(**result)
             if result['position']:
                 try:
-                    test = winners[result['position'][0].lower()]
+                    test = winners[result['position'].lower()]
                     print('{} vs {}'.format(test, p))
+                    if username not in self.results:
+                        self.results[username] = 1
                     if test == p:
                         points = p.get_points()
                         print('{}!!!!!!!!!!! and get {} POINTS'.format(p, points))
-                        if username in self.results:
-                            self.results[username] += points
-                        else:
-                            self.results[username] = points
-                except:
+                        self.results[username] += points
+                except Exception as err:
+                    print(err)
                     continue
 
     def load_winner(self):

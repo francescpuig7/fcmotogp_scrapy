@@ -30,6 +30,3 @@ class ProposalUser(Proposal):
 
     def __repr__(self):
         return 'USERNAME {username} VOTED: {pilot_name} FOR {position}'.format(**self.__dict__)
-
-    def get_points(self):
-        return POSITION_POINTS[self.position]
