@@ -5,7 +5,7 @@ from magic_regex import magic_regex
 
 winners = {
     '1': Proposal('Marquez', '1'), '2': Proposal('Rins', '2'),
-    '3': Proposal('Rossi', '3'), 'vr': Proposal('Rins', 'vr'), 'pole': Proposal('Marquez', 'pole')
+    '3': Proposal('Viñales', '3'), 'vr': Proposal('Rins', 'vr'), 'pole': Proposal('Marquez', 'pole')
 }
 
 class FCSpider(scrapy.Spider):
@@ -13,7 +13,7 @@ class FCSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            'https://www.forocoches.com/foro/showthread.php?t=7382028&highlight=',
+            'https://www.forocoches.com/foro/showthread.php?p=345081693#post345081693'
         ]
         print(urls)
         self.results = {}
@@ -30,7 +30,6 @@ class FCSpider(scrapy.Spider):
                 sel = 'td#{}::text'.format(post_id[0])
                 message = s.css(sel).getall()
                 self.parse_message(username[0], message, post_id[0])
-                #print(ProposalUser(username[0], 'Rossi', '1'))
                 print('\n')
         print(self.results)
 

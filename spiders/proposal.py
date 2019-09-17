@@ -13,7 +13,10 @@ class Proposal(object):
         self.position = str(position).lower()
 
     def __eq__(self, other):
-        return self.pilot_name == other.pilot_name
+        return self.pilot_name.lower() == other.pilot_name.lower()
+
+    def __repr__(self):
+        return '{pilot_name} - {position}'.format(**self.__dict__)
 
     def get_points(self):
         return POSITION_POINTS[self.position]
@@ -25,11 +28,8 @@ class ProposalUser(Proposal):
         self.username = username
         super(ProposalUser, self).__init__(pilot_name, position)
 
-    def __eq__(self, other):
-        return self.pilot_name.lower() == other.pilot_name.lower()
+    def __repr__(self):
+        return 'USERNAME {username} VOTED: {pilot_name} FOR {position}'.format(**self.__dict__)
 
     def get_points(self):
         return POSITION_POINTS[self.position]
-
-    def __repr__(self):
-        return 'USERNAME {} VOTED: {} FOR {} '.format(self.username, self.pilot_name, self.position)
