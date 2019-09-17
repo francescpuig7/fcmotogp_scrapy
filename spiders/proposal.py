@@ -15,12 +15,21 @@ class Proposal(object):
     def __eq__(self, other):
         return self.pilot_name.lower() == other.pilot_name.lower()
 
+    def __ne__(self, other):
+        return self.pilot_name.lower() != other.pilot_name.lower()
+
+    def __lt__(self, other):
+        return self.position < other.position
+
+    def __gt__(self, other):
+        return self.position > other.position
+
     def __repr__(self):
         return '{pilot_name} - {position}'.format(**self.__dict__)
 
-    def get_points(self):
+    @property
+    def points(self):
         return POSITION_POINTS[self.position]
-
 
 class ProposalUser(Proposal):
 

@@ -46,7 +46,7 @@ class FCSpider(scrapy.Spider):
                     if username not in self.results:
                         self.results[username] = 1
                     if test == p:
-                        points = p.get_points()
+                        points = p.points
                         print('{}!!!!!!!!!!! and get {} POINTS'.format(p, points))
                         self.results[username] += points
                 except Exception as err:
