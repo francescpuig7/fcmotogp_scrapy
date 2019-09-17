@@ -4,12 +4,6 @@ from dictnames import DICTNAMES
 from magic_regex import magic_regex
 import pandas as pd
 
-winners = {
-    '1': Proposal('Marquez', '1'), '2': Proposal('Quartanaro', '2'),
-    '3': Proposal('Viñales', '3'), 'vr': Proposal('Marquez', 'vr'),
-    'pole': Proposal('Viñales', 'pole'), 'pi': Proposal('Quartanaro', 'pi')
-}
-
 class FCSpider(scrapy.Spider):
     name = "fc_spider"
 
@@ -47,7 +41,7 @@ class FCSpider(scrapy.Spider):
             p = ProposalUser(**result)
             if result['position']:
                 try:
-                    test = winners[result['position'].lower()]
+                    test = self.winners[result['position'].lower()]
                     print('{} vs {}'.format(test, p))
                     if username not in self.results:
                         self.results[username] = 1
@@ -56,7 +50,6 @@ class FCSpider(scrapy.Spider):
                         print('{}!!!!!!!!!!! and get {} POINTS'.format(p, points))
                         self.results[username] += points
                 except Exception as err:
-                    print(err)
                     continue
 
     def load_winner(self):
@@ -64,7 +57,7 @@ class FCSpider(scrapy.Spider):
         self.winners = {}
         df = pd.read_csv('winners', sep=';', names=['pilot_name', 'position'])
         for elem in df.T.to_dict().values():
-            self.winners[elem['position']] = elem['pilot_name']
+            self.winners[elem['position']] = Proposal(elem['pilot_name'], elem['position'])
         return True
 
     def write_results(self):
