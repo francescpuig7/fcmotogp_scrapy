@@ -1,5 +1,6 @@
 import scrapy
 from proposal import *
+from user import User
 from dictnames import DICTNAMES
 from magic_regex import magic_regex
 import pandas as pd
@@ -9,7 +10,8 @@ class FCSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            'https://www.forocoches.com/foro/showthread.php?p=345081693#post345081693'
+'https://www.forocoches.com/foro/showthread.php?t=7429216&highlight=porra+motogp',
+'https://www.forocoches.com/foro/showthread.php?t=7429216&highlight=porra+motogp&page=2'
         ]
         print(urls)
         self.load_winner()
@@ -37,6 +39,7 @@ class FCSpider(scrapy.Spider):
         message = [x for x in message if x != '\r\n\t\r\n\t\t\r\n\t\t\r\n\r\n\r\n']
         print('{}: {}'.format(username, message))
         results = magic_regex(message, username)
+        user_ = User(username, n_proposals=0)
         for result in results:
             p = ProposalUser(**result)
             if result['position']:
@@ -49,8 +52,10 @@ class FCSpider(scrapy.Spider):
                         points = p.points
                         print('{}!!!!!!!!!!! and get {} POINTS'.format(p, points))
                         self.results[username] += points
+                    user_.update_proposals()
                 except Exception as err:
                     continue
+        print(user_.n_proposals)
 
     def load_winner(self):
         self.results = {}

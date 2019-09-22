@@ -5,12 +5,12 @@ def magic_regex(alist, username):
     result = []
     for message in alist:
         for regex in REGEX_PILOTS.keys():
-            captured = re.findall(regex, message)
+            captured = re.findall(regex, message.lower())
             if captured:
                 captured = REGEX_PILOTS[regex].lower()
                 position = '?'
                 for r in REGEX_POSITIONS.keys():
-                    position = re.findall(r, message)
+                    position = re.findall(r, message.lower())
                     if position:
                         position = REGEX_POSITIONS[r].lower()
                         break
