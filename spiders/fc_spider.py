@@ -10,8 +10,7 @@ class FCSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-'https://www.forocoches.com/foro/showthread.php?t=7429216&highlight=porra+motogp',
-'https://www.forocoches.com/foro/showthread.php?t=7429216&highlight=porra+motogp&page=2'
+"https://www.forocoches.com/foro/showthread.php?t=7456282&highlight="
         ]
         print(urls)
         self.load_winner()
@@ -55,7 +54,8 @@ class FCSpider(scrapy.Spider):
                     user_.update_proposals()
                 except Exception as err:
                     continue
-        print(user_.n_proposals)
+        if user_.n_proposals < 6:
+            self.results[user_.name] = 'manual?'
 
     def load_winner(self):
         self.results = {}

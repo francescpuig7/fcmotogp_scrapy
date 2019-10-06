@@ -43,10 +43,8 @@ REGEX_PILOTS = {
                    'oliveira*': 'Oliveira',
                    'lorenzo*': 'Lorenzo',
                    'Lorenzo*': 'Lorenzo',
-                   'quartanar*': 'Quartanaro',
-                   'Quartanar*': 'Quartanaro',
-                   'Quartarar*': 'Quartanaro', 
-                   'quartarar*': 'Quartanaro',
+                   'quarta.ar*': 'Quartararo',
+                   'Quarta.ar*': 'Quartararo',
                    '.anet': 'Canet',
 }
 

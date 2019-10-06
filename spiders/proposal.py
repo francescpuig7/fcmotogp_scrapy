@@ -31,6 +31,7 @@ class Proposal(object):
     def points(self):
         return POSITION_POINTS[self.position]
 
+
 class ProposalUser(Proposal):
 
     def __init__(self, username, pilot_name, position):
