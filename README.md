@@ -11,4 +11,6 @@ execute:
 scrapy runspider /spiders/fc_spider.py
 ```
 
+Check the results on `results.txt`
+
 And this is all folks!
