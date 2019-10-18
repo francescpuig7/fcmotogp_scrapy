@@ -54,8 +54,11 @@ class FCSpider(scrapy.Spider):
                     user_.update_proposals()
                 except Exception as err:
                     continue
-        if user_.n_proposals < 6:
+        if user_.n_proposals != 8:
             self.results[user_.name] = 'manual?'
+            print('NO - Manual? #Votes: {}'.format(user_.n_proposals))
+        else:
+            print('ok #Votes: {}'.format(user_.n_proposals))
 
     def load_winner(self):
         self.results = {}
