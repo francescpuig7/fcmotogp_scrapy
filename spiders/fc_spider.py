@@ -1,7 +1,6 @@
 import scrapy
 from proposal import *
 from user import User
-from dictnames import DICTNAMES
 from magic_regex import magic_regex
 import pandas as pd
 

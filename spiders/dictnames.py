@@ -1,7 +1,3 @@
-DICTNAMES = [
-    'marquez', 'vinales', 'Marc Marquez', 'maverick', 'dovi', 'dovizioso', 'dovicioso', 'rossi', 'rins', 'miller',
-    'jack'
-]
 
 REGEX_PILOTS = {
     'm.rque*': 'Marquez',
@@ -14,12 +10,15 @@ REGEX_PILOTS = {
     '\Drutchlow': 'Crutchlow',
     'ian*one': 'Iannone',
     'mir': 'Mir',
+    '\Dakagami': 'Nakagami',
     'Aleix Espargaro*': 'Aleix',
+    'Pol': 'Pol',
     '\Dins': 'Rins',
     '\Dlex..ins': 'Rins',
     '\Diller*': 'Miller',
     'Pol Espargar*': 'Pol',
     'pol espargar*': 'Pol',
+    'P.*Espargaro': 'Pol',
     'Valentino Rossi*': 'Rossi',
     '\Dorbidel*i': 'Morbidelli',
     'Ros*i': 'Rossi',
@@ -71,7 +70,9 @@ REGEX_PILOTS = {
     '\Dergio Garcia': 'Sergio',
     '\Dgura': 'Ogura',
     '\Dowes': 'Lowes',
-    '\Dez*ec*hi': 'Bezzecchi'
+    '\Dez*ec*hi': 'Bezzecchi',
+    '\Daito \Doba': 'Kaito',
+    '\Dietti': 'Vietti',
 }
 
 REGEX_POSITIONS = {
@@ -87,6 +88,9 @@ REGEX_POSITIONS = {
     "^1": '1',
     "^2": '2',
     "^3": '3',
+    "- 1:": '1',
+    "- 2:": '2',
+    "- 3:": '3',
     "^\n *1": '1',
     "^\n *2": '2',
     "^\n *3": '3',
