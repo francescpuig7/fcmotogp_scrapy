@@ -57,14 +57,10 @@ class UsersSpider(scrapy.Spider):
             'https://www.forocoches.com/foro/showthread.php?t=5842240&highlight=porra+motogp',
             'https://www.forocoches.com/foro/showthread.php?t=5800134&highlight=porra+motogp',
             'https://www.forocoches.com/foro/showthread.php?t=5710348&highlight=porra+motogp',
-            'https://www.forocoches.com/foro/showthread.php?t=5495539&highlight=porra+motogp'
+            'https://www.forocoches.com/foro/showthread.php?t=5495539&highlight=porra+motogp',
+            'https://www.forocoches.com/foro/showthread.php?t=7460511',
         ]
-        urls = []
-        for i in range(2, 5):
-           urls.append('https://www.forocoches.com/foro/showthread.php?t=7289319&highlight=motogp&page={}'.format(str(i)))
-        print(urls)
         for url in urls:
-            sleep(3)
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
