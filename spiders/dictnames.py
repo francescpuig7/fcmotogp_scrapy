@@ -1,7 +1,3 @@
-DICTNAMES = [
-    'marquez', 'vinales', 'Marc Marquez', 'maverick', 'dovi', 'dovizioso', 'dovicioso', 'rossi', 'rins', 'miller',
-    'jack'
-]
 
 REGEX_PILOTS = {
     'm.rque*': 'Marquez',
@@ -14,13 +10,17 @@ REGEX_PILOTS = {
     '\Drutchlow': 'Crutchlow',
     'ian*one': 'Iannone',
     'mir': 'Mir',
+    '\Dakagami': 'Nakagami',
     'Aleix Espargaro*': 'Aleix',
+    'Pol': 'Pol',
     '\Dins': 'Rins',
     '\Dlex..ins': 'Rins',
     '\Diller*': 'Miller',
     'Pol Espargar*': 'Pol',
     'pol espargar*': 'Pol',
+    'P.*Espargaro': 'Pol',
     'Valentino Rossi*': 'Rossi',
+    '\Dorbidel*i': 'Morbidelli',
     'Ros*i': 'Rossi',
     'ros*i': 'Rossi',
     'valentino rossi*': 'Rossi',
@@ -47,6 +47,8 @@ REGEX_PILOTS = {
     '\Docatel*i': 'Locatelli',
     'Balda': 'Baldassarri',
     'Baldassarri': 'Baldassarri',
+    '\Dastianini': 'Bastianini',
+    '\Dardner': 'Gardner',
     '\Dantra': 'Chantra',
     '\Darini': 'Marini',
     '\Drenas': 'Arenas',
@@ -63,6 +65,14 @@ REGEX_PILOTS = {
     '\Drbolino': 'Arbolino',
     '\Duzuki': 'Suzuki',
     '\Dntonelli': 'Antonelli',
+    '\Daume Masiá': 'Masiá',
+    '\Dasi.': 'Masiá',
+    '\Dergio Garcia': 'Sergio',
+    '\Dgura': 'Ogura',
+    '\Dowes': 'Lowes',
+    '\Dez*ec*hi': 'Bezzecchi',
+    '\Daito \Doba': 'Kaito',
+    '\Dietti': 'Vietti',
 }
 
 REGEX_POSITIONS = {
@@ -78,6 +88,9 @@ REGEX_POSITIONS = {
     "^1": '1',
     "^2": '2',
     "^3": '3',
+    "- 1:": '1',
+    "- 2:": '2',
+    "- 3:": '3',
     "^\n *1": '1',
     "^\n *2": '2',
     "^\n *3": '3',
@@ -89,9 +102,9 @@ REGEX_POSITIONS = {
     "3ro": '3',
     'independiente': 'pi',
     'Independiente': 'pi',
+    'Primer independiente': 'pi',
     '\Doto\s2': 'm2',
     '\Doto*2': 'm2',
     '\Doto\s3': 'm3',
     '\Doto*3': 'm3',
 }
-
